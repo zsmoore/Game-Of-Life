@@ -9,9 +9,17 @@ public class SavedPattern {
 
     private String patternName;
 
-    SavedPattern(SingleCell[][] patternRep, String patternName) {
+    public SavedPattern(SingleCell[][] patternRep, String patternName) {
         this.patternRep = patternRep;
         this.patternName = patternName;
+    }
+
+    public String getPatternName() {
+        return patternName;
+    }
+
+    public SingleCell[][] getPatternRep() {
+        return patternRep;
     }
 
 

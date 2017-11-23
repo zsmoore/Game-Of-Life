@@ -1,13 +1,13 @@
 package com.zachary_moore.gameoflife.view;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.zachary_moore.gameoflife.databinding.MainActivityBinding;
 import com.zachary_moore.gameoflife.model.core.GameOfLife;
 import com.zachary_moore.gameoflife.R;
 import com.zachary_moore.gameoflife.model.util.bundle.BundleHelper;
@@ -36,36 +36,16 @@ public class MainActivity extends FragmentActivity {
         PFragment pFragment = new PFragment(gameOfLife);
         pFragment.setView(gameContainer, this);
 
-        // Grab our goButton and set it's onClick to start the game
-        final Button goButton = this.findViewById(R.id.go_button);
-        goButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameOfLife.startConway();
-            }
-        });
-
-        // Grab our resetButton and set it's onClick to reset the game
-        final Button resetButton = this.findViewById(R.id.reset_button);
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameOfLife.reset();
-            }
-        });
-
-        // Grab our stepButton and set it's onClick to step the game
-        final Button stepButton = this.findViewById(R.id.step_button);
-        stepButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameOfLife.stepOne();
-            }
-        });
+        //Add game of life to our binding
+        MainActivityBinding mainActivityBinding = DataBindingUtil.setContentView(this,
+                R.layout.main_activity);
+        mainActivityBinding.setGameOfLife(gameOfLife);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
         if (gameOfLife != null) {
             gameOfLife.onRequestPermissionsResult(
                     requestCode, permissions, grantResults);
