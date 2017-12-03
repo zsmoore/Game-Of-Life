@@ -4,4 +4,6 @@
     <string name="reset">Reset</string>
     <string name="step">Step</string>
     <string name="patterns">Patterns</string>
+    <string name="save">Save</string>
+    <string name="clear">Clear</string>
 </resources>
